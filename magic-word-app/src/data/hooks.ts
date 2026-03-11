@@ -1,59 +1,12 @@
-export type HookTemplate = {
-  id: string;
-  type: "curiosity" | "problem" | "identity" | "confession" | "knowledge";
-  compatibleVibes?: Array<
-    "emotional" | "psychology" | "creative" | "behavior" | "everyday"
-  >;
-  template: string;
-};
-
-export const HOOK_TEMPLATES: HookTemplate[] = [
-  {
-    id: "curiosity-1",
-    type: "curiosity",
-    compatibleVibes: ["creative", "everyday", "emotional", "psychology"],
-    template: "Tiny magic word: {word}. It explains this feeling way too well.",
-  },
-  {
-    id: "knowledge-1",
-    type: "knowledge",
-    compatibleVibes: ["psychology", "emotional", "behavior", "everyday"],
-    template: "Real word, not made up: {word}. Most people miss this one.",
-  },
-  {
-    id: "problem-1",
-    type: "problem",
-    compatibleVibes: ["psychology", "everyday", "behavior"],
-    template: "If this keeps happening, {word} might be the missing label.",
-  },
-  {
-    id: "identity-1",
-    type: "identity",
-    compatibleVibes: ["emotional", "behavior", "creative", "psychology"],
-    template: "If this sounds like you, keep the word {word} in your pocket.",
-  },
-  {
-    id: "confession-1",
-    type: "confession",
-    compatibleVibes: ["emotional", "psychology", "creative"],
-    template: "I learned {word} and immediately felt called out.",
-  },
-  {
-    id: "curiosity-2",
-    type: "curiosity",
-    compatibleVibes: ["everyday", "creative", "behavior"],
-    template: "This whole vibe has a name: {word}.",
-  },
-  {
-    id: "knowledge-2",
-    type: "knowledge",
-    compatibleVibes: ["psychology", "behavior", "everyday"],
-    template: "There is a precise word for this pattern: {word}.",
-  },
-  {
-    id: "confession-2",
-    type: "confession",
-    compatibleVibes: ["emotional", "everyday", "creative"],
-    template: "Did not expect one word to read me this hard: {word}.",
-  },
+export const HOOK_TEMPLATES = [
+  "If you’ve ever {context}, there’s a word for that: {word}.",
+  "This feeling has a name, and it’s {word}.",
+  "Most people have experienced {context} but don’t know the word {word}.",
+  "If this sounds like you, you need to know the word {word}.",
+  "I just learned there’s a word for {context}: {word}.",
+  "There’s a surprisingly perfect word for {context}, and it’s {word}.",
+  "You know that feeling when you {context}? The word for that is {word}.",
+  "I wish I knew this word sooner: {word}. It means {context}.",
+  "This might explain something you’ve felt for years: {word}.",
+  "Not enough people know the word {word}, and honestly that should change.",
 ];
