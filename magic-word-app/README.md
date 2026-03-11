@@ -54,3 +54,41 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Cloudflare Pages deploy
+
+1. Log in to Cloudflare once:
+
+   ```bash
+   npm run cf:login
+   ```
+
+2. Set your Pages project name once per shell:
+
+   ```bash
+   export CF_PAGES_PROJECT="your-pages-project-name"
+   ```
+
+3. Deploy the latest local code to production:
+
+   ```bash
+   npm run deploy:pages
+   ```
+
+4. Deploy to a preview URL first (recommended before production):
+
+   ```bash
+   npm run deploy:pages:preview
+   ```
+
+5. Or use one interactive command (prompts for project and branch):
+
+   ```bash
+   npm run deploy:pages:interactive
+   ```
+
+   The interactive command remembers your last project name locally and reuses it as the default next time.
+
+This builds web output to `dist` and deploys it directly to Cloudflare Pages.
+
+If your domain still shows an old version after deploy, run a cache purge in Cloudflare and hard refresh the browser.

@@ -8,7 +8,12 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "build:web": "expo export -p web",
+    "cf:login": "npx wrangler login",
+    "deploy:pages:interactive": "npm run build:web && node ./scripts/deploy-pages-interactive.js",
+    "deploy:pages": "npm run build:web && node -e \"if (!process.env.CF_PAGES_PROJECT) { console.error('Set CF_PAGES_PROJECT first, e.g. export CF_PAGES_PROJECT=your-pages-project-name'); process.exit(1); }\" && npx wrangler pages deploy dist --project-name $CF_PAGES_PROJECT --branch main",
+    "deploy:pages:preview": "npm run build:web && node -e \"if (!process.env.CF_PAGES_PROJECT) { console.error('Set CF_PAGES_PROJECT first, e.g. export CF_PAGES_PROJECT=your-pages-project-name'); process.exit(1); }\" && npx wrangler pages deploy dist --project-name $CF_PAGES_PROJECT --branch preview"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^7.7.3",
@@ -43,3 +48,5 @@
   },
   "private": true
 }
+
+

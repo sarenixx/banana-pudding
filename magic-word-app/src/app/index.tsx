@@ -20,29 +20,34 @@ const TRIANGLE_TEXT_FONT = Platform.select({
 });
 
 const MAGIC_8_BALL_IMAGE = require("../../assets/images/magicball.png");
-const MAGIC_8_BALL_BACK_IMAGE = require("../../assets/images/ball.png");
+const MAGIC_8_BALL_BACK_IMAGE = require("../../assets/images/ball3.png");
+const TRIANGLE_IMAGE = require("../../assets/images/trinagle1.png");
 const BALL_SIZE = 430;
-const LIGHT_BLUE = "#93C5FD";
+const LIGHT_BLUE = "#BFDBFE";
 
 const STARS = [
-  { x: 0.11, y: 0.09, size: 2, opacity: 0.35 },
-  { x: 0.27, y: 0.14, size: 1.5, opacity: 0.22 },
-  { x: 0.71, y: 0.08, size: 2, opacity: 0.28 },
-  { x: 0.84, y: 0.2, size: 1.5, opacity: 0.2 },
-  { x: 0.08, y: 0.28, size: 1.5, opacity: 0.25 },
-  { x: 0.24, y: 0.32, size: 2, opacity: 0.2 },
-  { x: 0.9, y: 0.36, size: 2, opacity: 0.23 },
-  { x: 0.06, y: 0.44, size: 1.5, opacity: 0.24 },
-  { x: 0.18, y: 0.5, size: 1.5, opacity: 0.26 },
-  { x: 0.82, y: 0.54, size: 2, opacity: 0.2 },
-  { x: 0.09, y: 0.61, size: 2, opacity: 0.32 },
-  { x: 0.26, y: 0.66, size: 1.5, opacity: 0.22 },
-  { x: 0.88, y: 0.71, size: 1.5, opacity: 0.28 },
-  { x: 0.16, y: 0.77, size: 2, opacity: 0.2 },
-  { x: 0.31, y: 0.82, size: 1.5, opacity: 0.23 },
-  { x: 0.73, y: 0.86, size: 2, opacity: 0.3 },
-  { x: 0.56, y: 0.91, size: 1.5, opacity: 0.22 },
-  { x: 0.6, y: 0.24, size: 1.5, opacity: 0.24 },
+  { x: 0.11, y: 0.09, size: 2.5, opacity: 0.5 },
+  { x: 0.27, y: 0.14, size: 2, opacity: 0.34 },
+  { x: 0.71, y: 0.08, size: 2.5, opacity: 0.42 },
+  { x: 0.84, y: 0.2, size: 2, opacity: 0.32 },
+  { x: 0.08, y: 0.28, size: 2, opacity: 0.36 },
+  { x: 0.24, y: 0.32, size: 2.5, opacity: 0.32 },
+  { x: 0.9, y: 0.36, size: 2.5, opacity: 0.35 },
+  { x: 0.06, y: 0.44, size: 2, opacity: 0.36 },
+  { x: 0.18, y: 0.5, size: 2, opacity: 0.38 },
+  { x: 0.82, y: 0.54, size: 2.5, opacity: 0.31 },
+  { x: 0.09, y: 0.61, size: 2.5, opacity: 0.48 },
+  { x: 0.26, y: 0.66, size: 2, opacity: 0.34 },
+  { x: 0.88, y: 0.71, size: 2, opacity: 0.42 },
+  { x: 0.16, y: 0.77, size: 2.5, opacity: 0.31 },
+  { x: 0.31, y: 0.82, size: 2, opacity: 0.35 },
+  { x: 0.73, y: 0.86, size: 2.5, opacity: 0.46 },
+  { x: 0.56, y: 0.91, size: 2, opacity: 0.34 },
+  { x: 0.6, y: 0.24, size: 2, opacity: 0.36 },
+  { x: 0.43, y: 0.12, size: 2.5, opacity: 0.4 },
+  { x: 0.64, y: 0.42, size: 2, opacity: 0.33 },
+  { x: 0.4, y: 0.58, size: 2.5, opacity: 0.42 },
+  { x: 0.68, y: 0.74, size: 2, opacity: 0.36 },
 ];
 
 export default function HomeScreen() {
@@ -307,22 +312,22 @@ export default function HomeScreen() {
           useNativeDriver: true,
         }),
       ]),
-      Animated.delay(500),
+      Animated.delay(220),
       Animated.parallel([
         Animated.spring(triangleScale, {
           toValue: 7.2,
-          friction: 8,
-          tension: 110,
+          friction: 7,
+          tension: 160,
           useNativeDriver: true,
         }),
         Animated.timing(backImageOpacity, {
           toValue: 0,
-          duration: 180,
+          duration: 120,
           easing: Easing.out(Easing.cubic),
           useNativeDriver: true,
         }),
       ]),
-      Animated.delay(220),
+      Animated.delay(120),
       createWaveAnimation(),
     ]).start(() => {
       setRevealed(true);
@@ -399,7 +404,7 @@ export default function HomeScreen() {
 
           <View style={styles.triangleOverlayWrap}>
             <Animated.View style={{ transform: [{ scale: triangleScale }] }}>
-              <View style={styles.blueTriangle} />
+              <Image source={TRIANGLE_IMAGE} style={styles.triangleImage} resizeMode="contain" />
             </Animated.View>
 
             <Animated.View
@@ -435,7 +440,7 @@ export default function HomeScreen() {
                 },
               ]}
             >
-              <Text style={styles.triangleHook}>{revealData.hook}</Text>
+              <Text style={styles.triangleHook}>Hook: {revealData.hook}</Text>
             </Animated.View>
           </View>
         </Animated.View>
@@ -470,7 +475,12 @@ const styles = StyleSheet.create({
   star: {
     position: "absolute",
     borderRadius: 999,
-    backgroundColor: "#d7e5ff",
+    backgroundColor: "#e6efff",
+    shadowColor: "#d7e5ff",
+    shadowOpacity: 0.9,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 2,
   },
   glowOuter: {
     position: "absolute",
@@ -524,23 +534,18 @@ const styles = StyleSheet.create({
     height: 104,
     alignItems: "center",
     justifyContent: "center",
-    transform: [{ translateX: -6 }, { translateY: -6 }],
+    transform: [{ translateX: 10 }, { translateY: -6 }],
   },
-  blueTriangle: {
-    width: 0,
-    height: 0,
-    borderLeftWidth: 44,
-    borderRightWidth: 44,
-    borderTopWidth: 78,
-    borderLeftColor: "transparent",
-    borderRightColor: "transparent",
-    borderTopColor: "#1844ad",
-    transform: [{ rotate: "180deg" }],
+  triangleImage: {
+    width: 96,
+    height: 84,
   },
   triangleTextLayer: {
     position: "absolute",
     width: 250,
-    top: 22,
+    top: -54,
+    left: "50%",
+    marginLeft: -135,
     alignItems: "center",
   },
   triangleWord: {
@@ -558,7 +563,9 @@ const styles = StyleSheet.create({
   triangleTextLayerDefinition: {
     position: "absolute",
     width: 270,
-    top: 74,
+    top: -2,
+    left: "50%",
+    marginLeft: -145,
     alignItems: "center",
   },
   triangleDefinition: {
@@ -575,7 +582,9 @@ const styles = StyleSheet.create({
   triangleTextLayerHook: {
     position: "absolute",
     width: 280,
-    top: 128,
+    top: 66,
+    left: "50%",
+    marginLeft: -150,
     alignItems: "center",
   },
   triangleHook: {
